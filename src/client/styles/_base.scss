@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font;
+  font-size: 12px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  background: url(/src/client/images/background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main {
+  flex: 2;
+}
+
+section {
+  max-width: 80%;
+  margin: 30px auto;
+}
+
+input {
+  padding: 5px 20px;
+  width: 100%;
+  line-height: 16px;
+  margin: 10px 0;
+  border-radius: 15px 0 15px 0;
+  border: none;
+}
+
+#submit-btn {
+  width: 250px;
+  margin-left: 18%;
+  border-radius: 15px 0 15px 0;
+  border: none;
+  background: linear-gradient(white, $background1-color);
+}
+
+h3 {
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.5em;
+  line-height: 2em;
+  color: black;
+  background: $background3-color;
+  text-align: center;
+  text-decoration: underline;
+}
+
+button {
+  height: 28px;
+  width: 250px;
+  margin: 0 auto;
+  margin-top: 12px;
+  border-radius: 15px 0 15px 0;
+  border: none;
+  background: linear-gradient(white, $background1-color);
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
+/* Media queries*/
+@media screen and (min-width: $breakpoint2) {
+  #submit-btn {
+    margin-left: 35%;
+  }
+}

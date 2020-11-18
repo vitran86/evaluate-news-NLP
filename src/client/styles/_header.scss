@@ -1,0 +1,46 @@
+header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 40px;
+}
+
+.header-title {
+  width: 250px;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 900;
+  color: $background1-color;
+  margin-left: 50px;
+}
+
+.logo {
+  height: 80px;
+  width: 200px;
+  background: url(/src/client/images/logo.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+/* Media queries*/
+@media screen and (min-width: $breakpoint2) {
+  .logo {
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: $breakpoint3) {
+  header {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header-title {
+    align-self: center;
+    font-size: 3em;
+    width: 60%;
+    margin-top: 10px;
+    text-align: center;
+  }
+}

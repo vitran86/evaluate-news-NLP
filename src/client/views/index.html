@@ -3,53 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="/styles/resets.css" />
-    <link rel="stylesheet" href="/styles/base.css" />
-    <link rel="stylesheet" href="/styles/header.css" />
-    <link rel="stylesheet" href="/styles/form.css" />
-    <link rel="stylesheet" href="/styles/footer.css" />
-     -->
-     <title>Test</title>
+    <title>Test</title>
   </head>
 
   <body>
     <header>
-      <div class="">Logo</div>
-      <div class="">navigation</div>
+      <div class="logo"></div>
+      <div class="header-title">Natural Language Processing (NLP)</div>
     </header>
 
     <main>
       <section>
-        <form class="" onsubmit="return handleSubmit(event)">
-          <input
-            id="name"
-            type="text"
-            name="input"
-            value=""
-            placeholder="Enter the input here"
-          />
-          <input
-            id="submit-btn"
-            type="submit"
-            name=""
-            value="submit"
-            onclick="return handleSubmit(event)"
-            onsubmit="return handleSubmit(event)"
-          />
-        </form>
+        <input
+          id="name"
+          type="text"
+          name="input"
+          value=""
+          placeholder="Enter the input here"
+        />
+        <input id="submit-btn" type="submit" name="" value="Submit" />
       </section>
 
       <section>
-        <strong>Form Results:</strong>
-        <div id="results"></div>
+        <div class="display-result">
+          <h3>Results: <span id="warning-msg"></span></h3>
+          <button id="confirm-btn" type="button">Confirm</button>
+          <table id="table"></table>
+        </div>
       </section>
     </main>
 
     <footer>
-      <p>This is a footer</p>
+      <div class="footer-title">Reference Infomation</div>
+      
+        <div>
+          <b> IRONY </b> mentioned above is a ulterary technique in which what
+          is written or stated is different from or the opposite of what is
+          expected. <i>For example, verbal irony
+          is when a person says the opposite of what they mean, often to
+          sarcastic effect, such as when a customer says "Good job," to a waiter
+          who has dropped his tray.</i>
+        </div>
+        <div>
+          <p>
+            <b>SCORE-TAG :</b> This tag indicates the polarity found (or not
+            found) in the element it refers to.
+          </p>
+          <br>
+          <p>
+            <b>AGREEMENT: </b>
+            This field marks the agreement between the sentiments detected in
+            the text, the sentence or the segment it refers to.
+          </p>
+        </div>
+        <div>
+          <p>
+            <b>CONFIDENCE:</b>This field represents the confidence associated
+            with the sentiment analysis performed on the text. Its value is an
+            integer number in the 0-100 range.
+          </p>
+          <br>
+          <p>
+            <b>Level SENTENCE:</b>is a list of sentences in which the text is
+            divided for analysing.
+          </p>
+        </div>
+      
     </footer>
-
-    <script src="bundle.js"></script>
-
   </body>
 </html>

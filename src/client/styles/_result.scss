@@ -1,0 +1,41 @@
+.display-result {
+  overflow-y: scroll;
+  max-height: 300px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+  &.hide {
+    display: none;
+  }
+}
+
+th {
+  background: $background1-color;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: $background3-color;
+}
+
+tr:nth-child(odd) {
+  background-color: white;
+}
