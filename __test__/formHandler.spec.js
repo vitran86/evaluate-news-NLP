@@ -1,6 +1,6 @@
-import { validate } from "../src/client/js/formHandler.js";
+import { sendWarningMsg, validate } from "../src/client/js/formHandler.js";
 
-describe("test validate", () => {
+/* describe("test validate", () => {
   test("accept valid URL", () => {
     // input
     let input = "https://google.com/";
@@ -16,5 +16,15 @@ describe("test validate", () => {
     const result = validate(input);
     //check output
     expect(result).toBe("txt");
+  });
+});
+ */
+
+describe("Testing sendWarningMsg", () => {
+  test("Testing sending warning message function", () => {
+    //run function
+    const result = sendWarningMsg();
+    //check output
+    expect(result).toBeDefined();
   });
 });

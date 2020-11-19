@@ -4,7 +4,9 @@ const msg = document.getElementById("warning-msg");
 const confirmBtn = document.querySelector("#confirm-btn");
 
 // set up function to sending a warning message for user incase input is not a valid URL, require their confirmation
-const sendWarningMsg = () => {
+export const sendWarningMsg = () => {
+  const msg = document.getElementById("warning-msg");
+  const confirmBtn = document.querySelector("#confirm-btn");
   msg.innerHTML = `Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process.`;
   confirmBtn.classList.add("active");
   document.querySelector("#table").classList.add("hide");
