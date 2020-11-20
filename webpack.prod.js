@@ -57,7 +57,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new WorkboxPlugin.GenerateSW(),
     new HtmlWebPackPlugin({
-      template: ".src/client/views/index.html",
+      template: "./src/client/views/index.html",
       filename: "./index.html",
     }),
   ],

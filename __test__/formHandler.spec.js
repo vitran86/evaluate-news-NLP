@@ -1,11 +1,11 @@
-import { sendWarningMsg, validate } from "../src/client/js/formHandler.js";
+import { getType, sendInputMsg } from "../src/client/js/formHandler.js";
 
-/* describe("test validate", () => {
+describe("test getType", () => {
   test("accept valid URL", () => {
     // input
     let input = "https://google.com/";
     //run function
-    const result = validate(input);
+    const result = getType(input);
     //check output
     expect(result).toBe("url");
   });
@@ -13,18 +13,45 @@ import { sendWarningMsg, validate } from "../src/client/js/formHandler.js";
     // input
     let input = "hello Vi";
     //run function
-    const result = validate(input);
+    const result = getType(input);
     //check output
     expect(result).toBe("txt");
   });
-});
- */
-
-describe("Testing sendWarningMsg", () => {
-  test("Testing sending warning message function", () => {
+  test("detect invalid URL", () => {
+    // input
+    let input = "http//google.com/";
     //run function
-    const result = sendWarningMsg();
+    const result = getType(input);
     //check output
-    expect(result).toBeDefined();
+    expect(result).toBe("invalidURL");
+  });
+});
+
+describe("Testing sendInputMsg", () => {
+  test("Testing sending message for a URL", () => {
+    // input
+    let type = "url";
+    //run function
+    const message = sendInputMsg(type);
+    //check output
+    expect(message).toBe("Your input is an URL");
+  });
+  test("Testing sending message for a text", () => {
+    // input
+    let type = "txt";
+    //run function
+    const result = sendInputMsg(type);
+    //check output
+    expect(result).toBe("Your input is a text");
+  });
+  test("Testing sending warning message for a invalid URL input", () => {
+    // input
+    let type = "invalidURL";
+    //run function
+    const message = sendInputMsg(type);
+    //check output
+    expect(message).toBe(
+      "WARNING!!!Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process."
+    );
   });
 });

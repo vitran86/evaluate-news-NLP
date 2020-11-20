@@ -1,15 +1,29 @@
+import { postData } from "./api";
+import { buildResultTable } from "./displayResult";
+
 // declare variables using for functions
 var validator = require("validator");
 const msg = document.getElementById("warning-msg");
 const confirmBtn = document.querySelector("#confirm-btn");
 
-// set up function to sending a warning message for user incase input is not a valid URL, require their confirmation
-export const sendWarningMsg = () => {
+// set up function send input message for user, in case input is not a valid URL, require their confirmation
+export const sendInputMsg = (type) => {
   const msg = document.getElementById("warning-msg");
-  const confirmBtn = document.querySelector("#confirm-btn");
-  msg.innerHTML = `Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process.`;
-  confirmBtn.classList.add("active");
-  document.querySelector("#table").classList.add("hide");
+  let message = "";
+  if (type === "txt") {
+    message = "Your input is a text";
+    msg.innerHTML = message;
+  } else if (type === "url") {
+    message = "Your input is an URL";
+    msg.innerHTML = message;
+  } else if (type === "invalidURL") {
+    message =
+      "WARNING!!!Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process.";
+    msg.innerHTML = message;
+    confirmBtn.classList.add("active");
+    document.querySelector("#table").classList.add("hide");
+  }
+  return message;
 };
 
 // set up function handle user's confirmation
@@ -22,93 +36,45 @@ const handleConfirm = () => {
   return "txt";
 };
 
-// set up function to clarify the input
-export const validate = (input) => {
-  // check if input is not a valid URL and not start with "http", then it's a text
-  if (!validator.isURL(input) && input.substring(0, 4) !== "http") {
-    msg.innerHTML = `Your input is a text`;
-    return "txt";
+// set up function to clarify the input whether it's a text or a URL
+export const getType = (input) => {
+  let type = "";
+  if (validator.isURL(input)) {
+    type = "url";
+  } else if (!validator.isURL(input) && input.substring(0, 4) !== "http") {
+    type = "txt";
   } else if (!validator.isURL(input) && input.substring(0, 4) === "http") {
-    sendWarningMsg();
-    const txt = handleConfirm();
-    return txt;
-  } else {
-    msg.innerHTML = `Your input is an URL`;
-    return "url";
+    type = "invalidURL";
   }
+  return type;
 };
-
-// set up function to post data to server
-const postData = async (input) => {
-  let type = validate(input);
-
-  const result = await fetch(`http://localhost:3000/input`, {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "text/plain",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      method: type,
-      content: input,
-    }),
-  });
-  if (result.status === 200) {
-    const data = await result.json(); // data can be either formatted array or original data object
-    console.log(data);
-    if (data.length > 1) {
-      return data; // --> formated data is an array of objects
-    } else {
-      msg.innerHTML = data.status.msg;
-    }
-  } else {
-    console.log("error", error);
-  }
-};
-
-function displayResult(objects) {
-  let table = document.querySelector("#table");
-  const newTable = generateTable(objects);
-
-  // declare function generateTable as below:
-  function generateTable(objects) {
-    const generateTableBody = (objects) => {
-      // --> for creating <tbody>
-      objects.forEach((object) => {
-        let row = table.insertRow(); // --> create element <tr>
-        // ( use (for (...in) to loop through and print out all items in an object) --> to create elements <td>
-        for (let item in object) {
-          let cell = row.insertCell();
-          let content = document.createTextNode(object[item]);
-          cell.appendChild(content);
-        }
-      });
-    };
-    generateTableBody(objects);
-
-    const generateTableHead = (objects) => {
-      let textHeaders = Object.keys(objects[0]); // --> return name of properties in boilerplate object (the first object)
-      let thead = table.createTHead(); // --> for creating <thead>
-      thead.classList.add("table-header");
-      let header = thead.insertRow(); // --> create element <tr>
-      textHeaders.forEach((textHeader) => {
-        let th = document.createElement("th"); // --> create element <th>
-        let text = document.createTextNode(textHeader);
-        th.append(text);
-        header.append(th);
-      });
-    };
-    generateTableHead(objects);
-  }
-}
 
 function setUpEvent() {
   // add eventlistener for Submit button
-
   document.getElementById("submit-btn").addEventListener("click", () => {
     let input = document.getElementById("name").value;
-    postData(input).then((data) => displayResult(data));
+
+    // get type of input -->pass it in PostData function to fetch data --> display result
+    let type = getType(input);
+    sendInputMsg(type);
+    if (type === "invalidURL") {
+      type = handleConfirm();
+      appFuntion();
+    } else {
+      appFuntion();
+    }
+    async function appFuntion() {
+      const APIData = await postData(input, type);
+      console.log(APIData);
+      // then display result
+      if (!Array.isArray(APIData)) {
+        msg.innerHTML = APIData;
+      } else {
+        const data = await APIData;
+        console.log(data);
+        buildResultTable(data);
+      }
+    }
 
     // active the result box
     document.querySelector(".display-result").classList.add("active");
