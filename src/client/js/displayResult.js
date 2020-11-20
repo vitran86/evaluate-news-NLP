@@ -19,7 +19,7 @@ const buildResultTable = (data) => {
           cell.appendChild(content);
         }
       });
-      console.log(tableBody);
+
       return tableBody;
     }
 

@@ -18,7 +18,7 @@ export const sendInputMsg = (type) => {
     msg.innerHTML = message;
   } else if (type === "invalidURL") {
     message =
-      "WARNING!!!Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process.";
+      "WARNING!!! Input is not a valid URL. (It should start with http:// or https:// and contain no spaces). Please revise your input, otherwise, click Confirm for further process.";
     msg.innerHTML = message;
     confirmBtn.classList.add("active");
     document.querySelector("#table").classList.add("hide");
@@ -29,7 +29,7 @@ export const sendInputMsg = (type) => {
 // set up function handle user's confirmation
 const handleConfirm = () => {
   confirmBtn.addEventListener("click", () => {
-    msg.innerHTML = `Your input is treated as a text.`;
+    msg.innerHTML = `Your input was processed as a text.`;
     confirmBtn.classList.remove("active");
     document.querySelector("#table").classList.remove("hide");
   });
@@ -63,16 +63,15 @@ function setUpEvent() {
     } else {
       appFuntion();
     }
+
     async function appFuntion() {
       const APIData = await postData(input, type);
-      console.log(APIData);
+
       // then display result
       if (!Array.isArray(APIData)) {
         msg.innerHTML = APIData;
       } else {
-        const data = await APIData;
-        console.log(data);
-        buildResultTable(data);
+        buildResultTable(APIData);
       }
     }
 
