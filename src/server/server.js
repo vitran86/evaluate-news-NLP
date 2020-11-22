@@ -35,7 +35,7 @@ console.log(__dirname);
 // designates what port the app will listen to for incoming requests
 const port = process.env.PORT || 3000;
 app.listen(port, function () {
-  console.log(`This app is listening on port ${post}!`);
+  console.log(`This app is listening on port ${port}!`);
 });
 
 /* Set up Routers */
