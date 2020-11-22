@@ -36,7 +36,7 @@ The sign-up page is [here](https://www.meaningcloud.com/developer/login). Note t
 - Create a new `.env` file in the root of of project
 - Fill the `.env` file with your API key like this:
 
-`API_KEY {your key}=************************** `
+`API_KEY (your key)=************************** `
 
 ### Run scripts
 
@@ -44,4 +44,4 @@ All available Scripts of this project are declared in package.json, includes :
 
 - `npm run start` : to start local server on your machine.
 - `npm run build-dev` : to run the app in the development mode, automatically opening http://localhost:8080 in the browser.
-- `npm run build-prod` : build the app for production to the `dist` folder.
+- `npm run build` : build the app for production to the `dist` folder.

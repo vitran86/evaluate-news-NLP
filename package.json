@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/server/server.js",
     "dev": "nodemon",
-    "build-prod": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js", 
     "build-dev": "webpack serve --config webpack.dev.js",
     "test": "jest"
   },
@@ -42,5 +42,8 @@
     "terser-webpack-plugin": "^5.0.3",
     "webpack-dev-server": "^3.11.0",
     "workbox-webpack-plugin": "^5.1.4"
+  },
+  "engines": {
+    "node":"12.x"
   }
 }

@@ -33,8 +33,9 @@ app.use(express.static("dist"));
 console.log(__dirname);
 
 // designates what port the app will listen to for incoming requests
-app.listen(3000, function () {
-  console.log("Example app listening on port 3000!");
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log(`This app is listening on port ${post}!`);
 });
 
 /* Set up Routers */

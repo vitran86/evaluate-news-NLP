@@ -1,6 +1,12 @@
+let serverURL = "";
+
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+  serverURL = "http://localhost:3000";
+}
+
 // set up function to post data to server
 const postData = async (input, type) => {
-  const result = await fetch(`http://localhost:3000/input`, {
+  const result = await fetch(`${serverURL}/input`, {
     method: "POST",
     credentials: "same-origin",
     headers: {
