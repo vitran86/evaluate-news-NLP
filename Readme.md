@@ -25,7 +25,7 @@ This app uses **Node** to run local server and require a **Sentiment Analysic AP
 
 - Once the project is cloned, in the Node terminal of root folder EVALUATE-NEWS-NLP, run the command:
 
-`npm install`
+`npm run start`
 
 ### Signup for an API key
 
@@ -42,6 +42,5 @@ The sign-up page is [here](https://www.meaningcloud.com/developer/login). Note t
 
 All available Scripts of this project are declared in package.json, includes :
 
-- `npm run start` : to start local server on your machine.
 - `npm run build-dev` : to run the app in the development mode, automatically opening http://localhost:8080 in the browser.
 - `npm run build` : build the app for production to the `dist` folder.
